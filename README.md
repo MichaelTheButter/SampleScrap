@@ -1,2 +1,2 @@
 # SampleScrap
-This is A repo with sample Scrapping project
+This is repo with sample Scrapping project
