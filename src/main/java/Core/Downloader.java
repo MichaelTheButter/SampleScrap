@@ -7,8 +7,8 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class Downloader {
-    // private static final String URL_ADDRESS_FIRST_PAGE = "https://www.machineseeker.com/Milling-machines/ci-218";
-    // private static String urlNextPages = "https://www.machineseeker.com/Milling-machines/ci-218?page=2";
+    private static final String URL_ADDRESS_FIRST_PAGE = "https://www.machineseeker.com/Milling-machines/ci-218";
+    private static String urlNextPages = "https://www.machineseeker.com/Milling-machines/ci-218?page=2";
 
     private static final String HTML_SECTION = "section.grid-body";
 
