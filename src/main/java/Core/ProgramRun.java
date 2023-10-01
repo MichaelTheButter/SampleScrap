@@ -14,6 +14,8 @@ public class ProgramRun {
             Elements firstPage = importData.downloadFirstPageElements();
             List<Machine> offerList = segregateData.getMachines(firstPage);
             offerList.forEach(System.out::println);
+            Exporter.csvExport(offerList);
+
         } catch (IOException e) {
             System.err.println("Failed to load data");
         }
