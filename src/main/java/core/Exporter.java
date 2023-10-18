@@ -6,10 +6,18 @@ import java.io.IOException;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * This class exports data to CSV file
+ */
 public class Exporter {
+    /** CSV file name for data export  */
     private static final String FILE_NAME = "MachineList.csv";
     private static final String CSV_HEADER = "Name, Condition, Manufacture Year, Price\n";
 
+    /**
+     * Prepares and export data to CSV file
+     * @param machineList list of machines to export
+     */
     public static void csvExport(List<Machine> machineList) {
         File csvFile = new File(FILE_NAME);
         Function<String, String> prepareStringToCsv = x -> "\"" + x.replaceAll("\"", "\"\"") + "\",";

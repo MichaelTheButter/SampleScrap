@@ -2,6 +2,9 @@ package core;
 
 import java.util.Objects;
 
+/**
+ * Machine definition with standard methods
+ */
 public class Machine {
     private String name;
     private String condition;
