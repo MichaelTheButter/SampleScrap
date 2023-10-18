@@ -1,4 +1,4 @@
-package Core;
+package core;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

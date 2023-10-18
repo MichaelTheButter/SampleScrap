@@ -1,4 +1,4 @@
-package Core;
+package core;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * This class segregates a data  from HTML element
+ */
 public class DataSegregation {
     private static final String HTML_HEADER = "h5";
     private static final String HTML_YEAR_AND_DESCRIPTION = "div.d-flex.fs-8.gap-r-5";
@@ -21,7 +24,8 @@ public class DataSegregation {
         for (Element element: elements) {
             Machine machine = new Machine(getHeader(element), getDescription(element), getYear(element), getPrice(element));
             machineList.add(machine);
-        } return machineList;
+        }
+        return machineList;
     }
 
 
@@ -45,17 +49,18 @@ public class DataSegregation {
     }
 
 
-    private boolean hasYear(Element element) {
+    /**
+     * Check if the description is long enough to contain the manufacture Year, if so, check if there is 4 digits on the beginning
+     */
+        private boolean hasYear(Element element) {
         String description = element.select(HTML_YEAR_AND_DESCRIPTION).text();
 
-        // check if the description is long enough to contain the production Year, if so, check if there is 4 digits on the beginning
-        if (description.length() > 4){
+       if (description.length() > 4){
             int countDigits = 0;
             for(int i=0; i <4; i++){
                 if(Character.isDigit(description.charAt(i))) countDigits++;
             }
-            if (countDigits == 4) return true;
-            else return false;
+            return countDigits == 4;
         } else return false;
     }
 
@@ -69,6 +74,7 @@ public class DataSegregation {
             } catch (ParseException e) {
                 return 0;
             }
-        } else return 0;
+        }
+        return 0;
     }
 }

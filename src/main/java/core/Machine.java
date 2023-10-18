@@ -1,4 +1,4 @@
-package Core;
+package core;
 
 import java.util.Objects;
 
@@ -54,8 +54,8 @@ public class Machine {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("Machine{" + "name='" + name + '\'' + ", condition='" + condition + '\'');
-        if (productionYear != 0) builder.append(", productionYear=" + productionYear);
-        else builder.append(", productionYear= Unknown");
+        if (productionYear != 0) builder.append(", Manufacture year=" + productionYear);
+        else builder.append(", Manufacture year= Unknown");
         if (price != 0) builder.append(", price= " + price + "}");
         else builder.append(", price= unknown}");
         return builder.toString();
