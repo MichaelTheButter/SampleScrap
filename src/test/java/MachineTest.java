@@ -1,4 +1,4 @@
-import Core.Machine;
+import core.Machine;
 
 public class MachineTest {
     public static void main(String[] args) {

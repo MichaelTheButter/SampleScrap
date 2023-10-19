@@ -1,4 +1,4 @@
-package Core;
+package core;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -9,25 +9,47 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * This class segregates a data from HTML section and put it into a list of machines
+ */
 public class DataSegregation {
     private static final String HTML_HEADER = "h5";
     private static final String HTML_YEAR_AND_DESCRIPTION = "div.d-flex.fs-8.gap-r-5";
+
+    /** Local currency standard for EU, it could be different in other locations */
     private static final String currency = "€";
     private static final String HTML_PRICE = "div.price";
 
 
+    /**
+     * Creates new machine with clean data for each HTML element and add it to the machine List
+     * @param elements  array of all elements from HTML section
+     * @return          the machine List from HTML section
+     */
     public List<Machine> getMachines(Elements elements) {
         List<Machine> machineList = new ArrayList<>();
         for (Element element: elements) {
             Machine machine = new Machine(getHeader(element), getDescription(element), getYear(element), getPrice(element));
             machineList.add(machine);
-        } return machineList;
+        }
+        return machineList;
     }
 
 
+    /**
+     * Gets machine name and type from a HTML header
+     * @param element   element from HTML section
+     * @return          header from element, which is a machine name and type
+     */
     private String getHeader(Element element) {
         return element.select(HTML_HEADER).text();
     }
+
+    /**
+     * Separates a manufacture year from the description if there is one
+     * @param element   element from HTML section
+     * @return          a year, if there is one, if not return 0
+     */
     private int getYear(Element element) {
         int year;
         if (hasYear(element)) {
@@ -37,6 +59,11 @@ public class DataSegregation {
         return year;
     }
 
+    /**
+     * Gets a description without a manufacture year
+     * @param element   element from HTML sections
+     * @return          description of a machine condition
+     */
     private String getDescription(Element element) {
         String description = element.select(HTML_YEAR_AND_DESCRIPTION).text();
         if (hasYear(element)){
@@ -45,20 +72,28 @@ public class DataSegregation {
     }
 
 
-    private boolean hasYear(Element element) {
+    /**
+     * Check if the description is long enough to contain the manufacture year, if so, check if there is 4 digits on the beginning which stands for a manufacture year
+     * @param element   element from HTML section
+     * @return          boolean if there is a year in description or not
+     */
+        private boolean hasYear(Element element) {
         String description = element.select(HTML_YEAR_AND_DESCRIPTION).text();
 
-        // check if the description is long enough to contain the production Year, if so, check if there is 4 digits on the beginning
-        if (description.length() > 4){
+       if (description.length() > 4){
             int countDigits = 0;
             for(int i=0; i <4; i++){
                 if(Character.isDigit(description.charAt(i))) countDigits++;
             }
-            if (countDigits == 4) return true;
-            else return false;
+            return countDigits == 4;
         } else return false;
     }
 
+    /**
+     * Separates a price from HTML section
+     * @param element   element from HTML section
+     * @return          price or if there is no price it returns 0
+     */
     private int getPrice(Element element) {
         NumberFormat format = NumberFormat.getInstance(Locale.US);
         String stringPrice = element.select(HTML_PRICE).text();
@@ -69,6 +104,7 @@ public class DataSegregation {
             } catch (ParseException e) {
                 return 0;
             }
-        } else return 0;
+        }
+        return 0;
     }
 }

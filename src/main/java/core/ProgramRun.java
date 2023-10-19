@@ -1,10 +1,13 @@
-package Core;
+package core;
 
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Downloads, segregates, exports and prints out a machines data from URL, defined in Downloader
+ */
 public class ProgramRun {
     public static void main(String[] args){
         Downloader importData = new Downloader();
