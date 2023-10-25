@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Function;
 
 /**
- * This class exports data to CSV file
+ * Prepares and exports data to CSV file
  */
 public class Exporter {
     /** CSV file name for data export  */
@@ -15,7 +15,7 @@ public class Exporter {
     private static final String CSV_HEADER = "Name, Condition, Manufacture Year, Price\n";
 
     /**
-     * Prepares and export data to CSV file
+     * Prepares and exports data to CSV file
      * @param machineList list of machines to export
      */
     public static void csvExport(List<Machine> machineList) {

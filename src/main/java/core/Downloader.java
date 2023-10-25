@@ -7,14 +7,14 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 /**
- * This class defines all URL addresses and download a HTML section
+ * Defines all URL addresses and downloads HTML section
  */
 public class Downloader {
     /** This is a URL address for scrapping data */
     private static final String URL_ADDRESS_FIRST_PAGE = "https://www.machineseeker.com/Milling-machines/ci-218";
     private static String urlNextPages = "https://www.machineseeker.com/Milling-machines/ci-218?page=2";
 
-    /** HTML section with all machines data */
+    /** HTML section with all machine's data */
     private static final String HTML_SECTION = "section.grid-body";
 
 
@@ -27,7 +27,7 @@ public class Downloader {
     }
 
     /**
-     * Connects with URL and sorts out a section with machine data
+     * Connects with URL and sorts out a section with machine's data
      * @return              HTML section
      * @throws IOException  connection fails
      */

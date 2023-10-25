@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Downloads, segregates, exports and prints out a machines data from URL, defined in Downloader
+ * Downloads, segregates, exports and prints out a machine's data from the URL, defined in Downloader
  */
 public class ProgramRun {
     public static void main(String[] args){

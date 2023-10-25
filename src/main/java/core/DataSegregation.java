@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * This class segregates a data from HTML section and put it into a list of machines
+ * Segregates data from HTML section and puts it into a list of machines
  */
 public class DataSegregation {
     private static final String HTML_HEADER = "h5";
@@ -22,7 +22,7 @@ public class DataSegregation {
 
 
     /**
-     * Creates new machine with clean data for each HTML element and add it to the machine List
+     * Creates new machine with cleaned data for each HTML element and add it to the machine List
      * @param elements  array of all elements from HTML section
      * @return          the machine List from HTML section
      */
@@ -39,14 +39,14 @@ public class DataSegregation {
     /**
      * Gets machine name and type from a HTML header
      * @param element   element from HTML section
-     * @return          header from element, which is a machine name and type
+     * @return          header from an element, which is a machine name and type
      */
     private String getHeader(Element element) {
         return element.select(HTML_HEADER).text();
     }
 
     /**
-     * Separates a manufacture year from the description if there is one
+     * Separates a year of manufacture from the description if there is one
      * @param element   element from HTML section
      * @return          a year, if there is one, if not return 0
      */
@@ -60,9 +60,9 @@ public class DataSegregation {
     }
 
     /**
-     * Gets a description without a manufacture year
+     * Gets a description without year of manufacture
      * @param element   element from HTML sections
-     * @return          description of a machine condition
+     * @return          description of a machine's condition
      */
     private String getDescription(Element element) {
         String description = element.select(HTML_YEAR_AND_DESCRIPTION).text();
@@ -73,7 +73,7 @@ public class DataSegregation {
 
 
     /**
-     * Check if the description is long enough to contain the manufacture year, if so, check if there is 4 digits on the beginning which stands for a manufacture year
+     * Check if the description is long enough to contain year of manufacture, if so, check if there is 4 digits at the beginning which stands for year of manufacture
      * @param element   element from HTML section
      * @return          boolean if there is a year in description or not
      */
