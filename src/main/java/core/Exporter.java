@@ -3,6 +3,8 @@ package core;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -19,29 +21,40 @@ public class Exporter {
      * @param machineList list of machines to export
      */
     public static void csvExport(List<Machine> machineList) {
-        File csvFile = new File(FILE_NAME);
-        Function<String, String> prepareStringToCsv = x -> "\"" + x.replaceAll("\"", "\"\"") + "\",";
-        Function<Integer, String> prepareIntToCSV = x -> "\"" + x + "\",";
+        List<String> stringCSVList = csvPrepare(machineList);
+        String currentDir = System.getProperty("user.dir");
+        String separator = System.getProperty("file.separator");
+        File csvFile = new File(currentDir + separator + FILE_NAME);
         try (
                 FileWriter fileWriter = new FileWriter(csvFile);
 
                 ){
-            fileWriter.write(CSV_HEADER);
 
-            for (Machine machine: machineList){
-                StringBuilder line = new StringBuilder();
-
-                line.append(prepareStringToCsv.apply(machine.getName()));
-                line.append(prepareStringToCsv.apply(machine.getCondition()));
-                line.append(prepareIntToCSV.apply(machine.getProductionYear()));
-                line.append(prepareIntToCSV.apply(machine.getPrice()));
-
-                line.append("\n");
-                fileWriter.write(line.toString());
+            for (String line: stringCSVList){
+              fileWriter.write(line);
             }
 
         } catch (IOException e){
             System.err.println("Failed to save a CSV file");
         }
+    }
+
+    static List<String> csvPrepare(List<Machine> machineList) {
+        List<String> stringCSVList = new ArrayList<>();
+        Function<String, String> prepareStringToCsv = x -> "\"" + x.replaceAll("\"", "\"\"") + "\",";
+        Function<Integer, String> prepareIntToCSV = x -> "\"" + x + "\",";
+        stringCSVList.add(CSV_HEADER);
+        for (Machine machine: machineList){
+            StringBuilder line = new StringBuilder();
+
+            line.append(prepareStringToCsv.apply(machine.getName()));
+            line.append(prepareStringToCsv.apply(machine.getCondition()));
+            line.append(prepareIntToCSV.apply(machine.getProductionYear()));
+            line.append(prepareIntToCSV.apply(machine.getPrice()));
+
+            line.append("\n");
+            stringCSVList.add(line.toString());
+        }
+        return stringCSVList;
     }
 }
