@@ -1,8 +1,8 @@
 package configuration;
 
 public class Config {
-    private static String nameNodeIPAndPort = "hdfs://192.168.0.137:9000//";
-    private static String directoryName = "MillingMachines";
+    private static String nameNodeIPAndPort = "just check";
+    private static String directoryName = "jest check";
 
     public static String getNameNodeIPAndPort() {
         return nameNodeIPAndPort;
