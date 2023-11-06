@@ -16,9 +16,12 @@ public class ProgramRun {
 
 
         try {
+
             Elements firstPage = importData.downloadFirstPageElements();
             List<Machine> offerList = segregateData.getMachines(firstPage);
+
             offerList.forEach(System.out::println);
+
             Exporter.csvExport(offerList);
 
             HdfsOperations hdfs = new HdfsOperations();

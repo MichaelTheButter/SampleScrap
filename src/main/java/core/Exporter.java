@@ -3,7 +3,6 @@ package core;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -17,32 +16,39 @@ public class Exporter {
     private static final String CSV_HEADER = "Name, Condition, Manufacture Year, Price\n";
 
     /**
-     * Prepares and exports data to CSV file
+     * Exports data to CSV file
      * @param machineList list of machines to export
      */
     public static void csvExport(List<Machine> machineList) {
-        List<String> stringCSVList = csvPrepare(machineList);
+        // get current directory and separator to create a file path
         String currentDir = System.getProperty("user.dir");
         String separator = System.getProperty("file.separator");
+
+        List<String> stringCSVList = csvPrepare(machineList);
+
         File csvFile = new File(currentDir + separator + FILE_NAME);
         try (
                 FileWriter fileWriter = new FileWriter(csvFile);
-
                 ){
-
             for (String line: stringCSVList){
               fileWriter.write(line);
             }
-
         } catch (IOException e){
             System.err.println("Failed to save a CSV file");
         }
     }
 
+    /**
+     * Converts list of machine into list of CSV Strings
+     * @param machineList list of machines to prepare
+     * @return list of CSV Strings
+     */
     static List<String> csvPrepare(List<Machine> machineList) {
         List<String> stringCSVList = new ArrayList<>();
+
         Function<String, String> prepareStringToCsv = x -> "\"" + x.replaceAll("\"", "\"\"") + "\",";
         Function<Integer, String> prepareIntToCSV = x -> "\"" + x + "\",";
+
         stringCSVList.add(CSV_HEADER);
         for (Machine machine: machineList){
             StringBuilder line = new StringBuilder();
