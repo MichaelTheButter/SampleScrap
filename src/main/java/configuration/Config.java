@@ -1,8 +1,8 @@
 package configuration;
 
 public class Config {
-    private static String nameNodeIPAndPort = "just check";
-    private static String directoryName = "jest check";
+    private static String nameNodeIPAndPort = "type your IP and port here";
+    private static String directoryName = "type a directory";
 
     public static String getNameNodeIPAndPort() {
         return nameNodeIPAndPort;
