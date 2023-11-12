@@ -16,7 +16,9 @@ import java.util.List;
 public class HdfsOperations {
 
     private static FileSystem fs;
-    private static String currentDate = LocalDateTime.now().toLocalDate().toString();
+    private static String currentDate = LocalDateTime.now()
+                                                    .toLocalDate()
+                                                    .toString();
     private String separator;
     private String directory;
 

@@ -14,9 +14,7 @@ public class ProgramRun {
         Downloader importData = new Downloader();
         DataSegregation segregateData = new DataSegregation();
 
-
         try {
-
             Elements firstPage = importData.downloadFirstPageElements();
             List<Machine> offerList = segregateData.getMachines(firstPage);
 
@@ -27,7 +25,6 @@ public class ProgramRun {
             HdfsOperations hdfs = new HdfsOperations();
             hdfs.createDirectory();
             hdfs.saveFile(offerList);
-
         } catch (IOException e) {
             System.err.println("Failed to load data");
         }
